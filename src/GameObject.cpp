@@ -20,38 +20,31 @@ void GameObject::draw() {
 	glFlush();
 }
 
-void GameObject::keyboard_down(unsigned char key, int xmouse, int ymouse) 
-{
-	switch (key)
-	{
-	case 033: // octal equivalent of the Escape key
-		glutLeaveMainLoop();
-		break;
-	case 'w':
-		// increase the camera's Z velocity
-		x++;
-		std::cout << x << std::endl;
-		glutPostRedisplay();
-		break;
-	case 's':
-		// decrease the camera's Z velocity
-		x--;
-		std::cout << x << std::endl;
-		glutPostRedisplay();
-		break;
-	case 'a':
-		// decrease the camera's X velocity
-		y--;
-		std::cout << y << std::endl;
-		glutPostRedisplay();
-		break;
-	case 'd':
-		// increase the camera's X velocity
-		y++;
-		std::cout << y << std::endl;
-		glutPostRedisplay();
-		break;
-	}
+
+void GameObject::moveUP(unsigned char key, int xmouse, int ymouse){
+	key = 'w';
+	y = y + 0.5;
+	std::cout << y << std::endl;
+	glutPostRedisplay();
 }
 
+void GameObject::moveDown(unsigned char key, int xmouse, int ymouse){
+	key = 's';
+	y = y - 0.5;
+	std::cout << y << std::endl;
+	glutPostRedisplay();
+}
 
+void GameObject::moveLeft(unsigned char key,int xmouse, int ymouse){
+	key = 'a';
+	x = x - 0.5;
+	std::cout << x << std::endl;
+	glutPostRedisplay();
+}
+
+void GameObject::moveRight(unsigned char key, int xmouse, int ymouse) {
+	key = 'd';
+	x = x + 0.5;
+	std::cout << x << std::endl;
+	glutPostRedisplay();
+}

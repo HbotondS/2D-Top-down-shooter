@@ -9,6 +9,9 @@ private:
 public:
 	GameObject(float, float);
 	void draw();
-	void keyboard_down(unsigned char, int, int);
-	
+	//void keyboard_down(unsigned char, int, int);
+	void moveUP(unsigned char,int,int);
+	void moveDown(unsigned char,int,int);
+	void moveRight(unsigned char,int,int);
+	void moveLeft(unsigned char,int,int);
 };
