@@ -3,13 +3,12 @@
 
 
 
-GameObject::GameObject(float width, float height): width(width), height(height) {
+GameObject::GameObject(float width, float height, float moveSpeed): width(width), height(height), moveSpeed(moveSpeed) {
 	x = 0.0;
 	y = 0.0;
 }
 
 void GameObject::draw() {
-	std::cout << "draw";
 	glClear(GL_COLOR_BUFFER_BIT);
 	glBegin(GL_POLYGON);
 	glVertex2f(x, y);
@@ -23,28 +22,28 @@ void GameObject::draw() {
 
 void GameObject::moveUP(unsigned char key, int xmouse, int ymouse){
 	key = 'w';
-	y = y + 0.5;
-	std::cout << y << std::endl;
+	y += moveSpeed;
+	// std::cout << y << std::endl;
 	glutPostRedisplay();
 }
 
 void GameObject::moveDown(unsigned char key, int xmouse, int ymouse){
 	key = 's';
-	y = y - 0.5;
-	std::cout << y << std::endl;
+	y -= moveSpeed;
+	// std::cout << y << std::endl;
 	glutPostRedisplay();
 }
 
 void GameObject::moveLeft(unsigned char key,int xmouse, int ymouse){
 	key = 'a';
-	x = x - 0.5;
-	std::cout << x << std::endl;
+	x -= moveSpeed;
+	// std::cout << x << std::endl;
 	glutPostRedisplay();
 }
 
 void GameObject::moveRight(unsigned char key, int xmouse, int ymouse) {
 	key = 'd';
-	x = x + 0.5;
-	std::cout << x << std::endl;
+	x += moveSpeed;
+	// std::cout << x << std::endl;
 	glutPostRedisplay();
 }
