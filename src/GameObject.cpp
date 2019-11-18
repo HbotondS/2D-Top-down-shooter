@@ -4,21 +4,43 @@
 
 
 GameObject::GameObject(float width, float height, float moveSpeed): width(width), height(height), moveSpeed(moveSpeed) {
-	x = 0.0;
-	y = 0.0;
+	x = 100;
+	y = 100;
+	angle = 0;
 }
 
 void GameObject::draw() {
 	glClear(GL_COLOR_BUFFER_BIT);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glTranslatef(x, y, 0);
+	glRotatef(angle, 0, 0, 1);
 	glBegin(GL_POLYGON);
-	glVertex2f(x, y);
-	glVertex2f(x + width, y);
-	glVertex2f(x + width, y + height);
-	glVertex2f(x, y + height);
+	glVertex2f(0, 0);
+	glVertex2f(0 + width, 0);
+	glVertex2f(0 + width, 0 + height);
+	glVertex2f(0, 0 + height);
 	glEnd();
-	glFlush();
+	glPopMatrix();
+	glutSwapBuffers();
 }
 
+
+float GameObject::getPositionX() {
+	return x;
+}
+float GameObject::getPositionY() {
+	return y;
+}
+
+void GameObject::setAngle(float angle) {
+	this->angle = angle;
+}
+
+float GameObject::getAngle() {
+	return angle;
+}
 
 void GameObject::moveUP(unsigned char key, int xmouse, int ymouse){
 	key = 'w';
