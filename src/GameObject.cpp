@@ -46,28 +46,24 @@ float GameObject::getAngle() {
 
 void GameObject::moveUP(unsigned char key, int xmouse, int ymouse){
 	key = 'w';
-	y += moveSpeed;
+	y -= moveSpeed;
 	// std::cout << y << std::endl;
-	glutPostRedisplay();
 }
 
 void GameObject::moveDown(unsigned char key, int xmouse, int ymouse){
 	key = 's';
-	y -= moveSpeed;
+	y += moveSpeed;
 	// std::cout << y << std::endl;
-	glutPostRedisplay();
 }
 
 void GameObject::moveLeft(unsigned char key,int xmouse, int ymouse){
 	key = 'a';
 	x -= moveSpeed;
 	// std::cout << x << std::endl;
-	glutPostRedisplay();
 }
 
 void GameObject::moveRight(unsigned char key, int xmouse, int ymouse) {
 	key = 'd';
 	x += moveSpeed;
 	// std::cout << x << std::endl;
-	glutPostRedisplay();
 }
