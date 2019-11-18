@@ -6,6 +6,8 @@
 GameObject::GameObject(float width, float height, float moveSpeed): width(width), height(height), moveSpeed(moveSpeed) {
 	x = 100;
 	y = 100;
+	origoX = width / 2;
+	origoY = height / 2;
 	angle = 0;
 }
 
@@ -17,10 +19,10 @@ void GameObject::draw() {
 	glTranslatef(x, y, 0);
 	glRotatef(angle, 0, 0, 1);
 	glBegin(GL_POLYGON);
-	glVertex2f(0, 0);
-	glVertex2f(0 + width, 0);
-	glVertex2f(0 + width, 0 + height);
-	glVertex2f(0, 0 + height);
+	glVertex2f(-origoX, -origoY);
+	glVertex2f(-origoX + width, -origoY);
+	glVertex2f(-origoX + width, -origoY + height);
+	glVertex2f(-origoX, -origoY + height);
 	glEnd();
 	glPopMatrix();
 	glutSwapBuffers();

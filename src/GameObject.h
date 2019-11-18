@@ -6,6 +6,7 @@ class GameObject : public IDrawable {
 private:
 	float x, y;
 	float width, height;
+	float origoX, origoY;
 	float moveSpeed;
 	float angle;
 public:
