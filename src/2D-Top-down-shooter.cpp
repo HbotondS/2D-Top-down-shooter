@@ -2,11 +2,12 @@
 #include "GameObject.h"
 #include "MenuObject.h"
 
+GameObject gameObject(0.5, 0.5);
+MenuObject menu;
+
 void displayMe(void) {
-	GameObject gameObject(0.5, 0.5);
 	gameObject.draw();
 
-	MenuObject menu;
 	//menu.draw();
 }
 
