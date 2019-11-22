@@ -3,7 +3,7 @@
 #include <GL/freeglut.h>
 
 class GameObject : public IDrawable {
-private:
+protected:
 	float x, y;
 	float width, height;
 	float origoX, origoY;

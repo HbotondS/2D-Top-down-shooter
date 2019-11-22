@@ -12,7 +12,6 @@ GameObject::GameObject(float width, float height, float moveSpeed): width(width)
 }
 
 void GameObject::draw() {
-	glClear(GL_COLOR_BUFFER_BIT);
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
@@ -25,7 +24,6 @@ void GameObject::draw() {
 	glVertex2f(-origoX, -origoY + height);
 	glEnd();
 	glPopMatrix();
-	glutSwapBuffers();
 }
 
 
