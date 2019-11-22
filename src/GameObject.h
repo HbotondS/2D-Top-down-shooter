@@ -20,4 +20,5 @@ public:
 	void moveDown(unsigned char,int,int);
 	void moveRight(unsigned char,int,int);
 	void moveLeft(unsigned char,int,int);
+	
 };

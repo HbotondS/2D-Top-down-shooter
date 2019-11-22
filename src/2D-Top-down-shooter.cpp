@@ -1,16 +1,22 @@
 #include <GL/freeglut.h>
 #include "GameObject.h"
+#include "Bullet.h"
 #include <iostream>
 #include <cmath>
 
 GameObject gameObject(50, 50, 5);
+Bullet bullet(10, 10, 1);
 
 void displayMe(void) {
 	gameObject.draw();
 }
 
+void displayBullet(void) {
+	bullet.draw();
+}
 int main(int argc, char** argv);
 
+void MouseShoot(int, int, int, int);
 void keyboard(unsigned char, int, int);
 void mouseMove(int, int);
 void reshape(int, int);
@@ -25,12 +31,21 @@ int main(int argc, char** argv) {
 	glutDisplayFunc(displayMe);
 	glutPassiveMotionFunc(mouseMove);
 	glutKeyboardFunc(keyboard);
+	glutMouseFunc(MouseShoot);
 	glutReshapeFunc(reshape);
 	glutTimerFunc(1, timer, 0);
 	glutMainLoop();
 	return 0;
 }
 
+void MouseShoot(int button, int state, int x, int y) {
+	button = GLUT_LEFT_BUTTON;
+	state = GLUT_DOWN;
+	glutDisplayFunc(displayBullet); /// ezzel van a baj, ezt nézd meg, itt megy végtelen ciklusba 
+	bullet.moveBullet();
+	glutSwapBuffers();
+	glutTimerFunc(1, timer, 0);
+}
 
 void keyboard(unsigned char key, int x, int y) {
 	switch (key) {
@@ -50,6 +65,7 @@ void keyboard(unsigned char key, int x, int y) {
 		glutLeaveMainLoop();
 		break;
 	}
+		
 }
 
 void mouseMove(int x, int y) {
@@ -66,6 +82,7 @@ void reshape(int width, int height) {
 }
 
 void timer(int value) {
+
 	glutPostRedisplay();
 	glutTimerFunc(1, timer, 0);
 }

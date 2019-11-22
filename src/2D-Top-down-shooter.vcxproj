@@ -164,11 +164,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="2D-Top-down-shooter.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="GameObject.cpp">
       <FileType>CppClass</FileType>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IDrawable.h" />
   </ItemGroup>
