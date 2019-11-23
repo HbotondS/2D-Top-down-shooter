@@ -1,12 +1,18 @@
 #include <GL/freeglut.h>
 #include "GameObject.h"
+#include "RgbImage.h"
+#include "Sprite.h"
 #include <iostream>
 #include <cmath>
 
+char filename[] = "res/player2.bmp";
+
 GameObject gameObject(50, 50, 5);
+Sprite sprite(0, 0, 0, 0, filename);
 
 void displayMe(void) {
-	gameObject.draw();
+	sprite.draw();
+	// gameObject.draw();
 }
 
 int main(int argc, char** argv);
