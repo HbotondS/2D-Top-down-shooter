@@ -27,31 +27,15 @@ Bullet::Bullet(float width, float height, int moveSpeed):GameObject(width, heigh
 }
 
 void Bullet::moveBullet() {
-	int i = 0;
-
-	for(i = 0; i < max_bullet; i++) {
-		x = getPositionX();
-		y = getPositionY();
-		angle = getAngle();
-		origoX = -max_velocity * sin(angle);
-		origoY = max_velocity * cos(angle);
-		break;
-		glutPostRedisplay();
+	for(int i = 0; i < max_bullet; i++) {
+		glPushMatrix();
+		glTranslatef(x, y, 0);
+		glRotatef(angle, 0, 0, 1);
+		x += moveSpeed * cos(angle);
+		y += moveSpeed * sin(angle);
+		glPopMatrix();
+		draw();
 	}
-
-	// eliminating those bullets which have gone past the window 
-	for(i = 0; i < max_bullet; i++) {
-		x = x + origoX;
-		y = y + origoY;
-		glutPostRedisplay();
-
-		if(x > width || x < 0 || y < height || y < 0) {
-			x = 0;
-			y = 0;
-			glutPostRedisplay();
-		}
-	}
-
 }
 
 

@@ -37,9 +37,11 @@ int main(int argc, char** argv) {
 }
 
 void MouseShoot(int button, int state, int x, int y) {
-	button = GLUT_LEFT_BUTTON;
-	state = GLUT_DOWN;
-	bullet.moveBullet();
+	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+		double angle2 = atan2((float) y - bullet.getPositionY(), (float) x - bullet.getPositionX());
+		bullet.setAngle(angle2);
+		bullet.moveBullet();
+	}
 }
 
 void keyboard(unsigned char key, int x, int y) {
