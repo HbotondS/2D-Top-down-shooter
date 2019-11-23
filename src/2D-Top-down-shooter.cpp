@@ -3,15 +3,19 @@
 #include "Bullet.h"
 #include <iostream>
 #include <cmath>
+#include "MenuObject.h"
 
 GameObject gameObject(50, 50, 5);
 Bullet bullet(10, 10, 1);
+MenuObject menu;
 
 void displayMe(void) {
 	glClear(GL_COLOR_BUFFER_BIT);
 	gameObject.draw();
 	bullet.draw();
 	glutSwapBuffers();
+
+	//menu.draw();
 }
 
 void MouseShoot(int, int, int, int);
@@ -23,7 +27,7 @@ void timer(int);
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE);
-	glutInitWindowSize(300, 300);
+	glutInitWindowSize(600, 500);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("Hello world :D");
 	glutDisplayFunc(displayMe);
