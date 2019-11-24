@@ -8,10 +8,11 @@ MenuObject menu;
 void displayMe(void) {
 	gameObject.draw();
 
-	//menu.draw();
+	menu.draw();
 }
 
 void keyboard(unsigned char, int, int);
+void onMouse(int button, int state, int x, int y);
 
 int main(int argc, char** argv) {
 
@@ -22,9 +23,30 @@ int main(int argc, char** argv) {
 	glutCreateWindow("Hello world :D");
 	glutDisplayFunc(displayMe);
 	glutKeyboardFunc(keyboard);
+	glutMouseFunc(onMouse);
 	glutMainLoop();
 	return 0;
 
+}
+
+void onMouse(int button, int state, int x, int y) {
+	if (state != GLUT_DOWN)
+		return;
+
+	int window_width = glutGet(GLUT_WINDOW_WIDTH);
+	int window_height = glutGet(GLUT_WINDOW_HEIGHT);
+
+	GLbyte color[4];
+	GLfloat depth;
+	GLuint index;
+
+	glReadPixels(x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &index);
+
+	int selected=index;
+	switch (selected) {
+	case 3:exit(0);
+		break;
+	}
 }
 
 
