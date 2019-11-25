@@ -3,7 +3,8 @@
 
 
 
-GameObject::GameObject(float width, float height, float moveSpeed): width(width), height(height), moveSpeed(moveSpeed) {
+GameObject::GameObject(float width, float height, float moveSpeed, char* textureLocation): width(width), height(height), moveSpeed(moveSpeed) {
+	sprite = new Sprite(width, height, textureLocation);
 	x = 100;
 	y = 100;
 	origoX = width / 2;
@@ -18,12 +19,7 @@ void GameObject::draw() {
 	glPushMatrix();
 	glTranslatef(x, y, 0);
 	glRotatef(angle, 0, 0, 1);
-	glBegin(GL_POLYGON);
-	glVertex2f(-origoX, -origoY);
-	glVertex2f(-origoX + width, -origoY);
-	glVertex2f(-origoX + width, -origoY + height);
-	glVertex2f(-origoX, -origoY + height);
-	glEnd();
+	sprite->draw();
 	glPopMatrix();
 	glutSwapBuffers();
 }

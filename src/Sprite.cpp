@@ -18,9 +18,18 @@ void Sprite::loadTextureFromFile(char* filename) {
 
 void Sprite::drawTextureQuad() {}
 
-Sprite::Sprite(float x, float y, float width, float height, char* filename) {
+Sprite::Sprite(float x, float y, float width, float height, char* filename)
+		: x(x), y(y), width(width), height(height), filename(filename) {
 	angle = 0;
-	this->filename = filename;
+	origoX = width / 2;
+	origoY = height / 2;
+}
+
+Sprite::Sprite(float width, float height, char* filename)
+		: width(width), height(height), filename(filename) {
+	angle = 0;
+	origoX = width / 2;
+	origoY = height / 2;
 }
 
 Sprite::~Sprite() {}
@@ -39,17 +48,14 @@ void Sprite::draw() {
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
 	glPushMatrix();
-	glTranslatef(20, 20, 0.0f);
-	glRotatef(angle, 0, 0, 1);
-
 
 	glBindTexture(GL_TEXTURE_2D, textureName);
 
 	glBegin(GL_QUADS);
-	glTexCoord2f(0.0, 0.0); glVertex3f(0.0, 0.0, 0.0);
-	glTexCoord2f(0.0, 1.0); glVertex3f(0.0, 100.0, 0.0);
-	glTexCoord2f(1.0, 1.0); glVertex3f(100.0, 100.0, 0.0);
-	glTexCoord2f(1.0, 0.0); glVertex3f(100.0, 0.0, 0.0);
+	glTexCoord2f(0.0, 0.0); glVertex2f(-origoX, -origoY);
+	glTexCoord2f(0.0, 1.0); glVertex2f(-origoX + width, -origoY);
+	glTexCoord2f(1.0, 1.0); glVertex2f(-origoX + width, -origoY + height);
+	glTexCoord2f(1.0, 0.0); glVertex2f(-origoX, -origoY + height);
 	glEnd();
 
 

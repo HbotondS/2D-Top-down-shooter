@@ -5,14 +5,12 @@
 #include <iostream>
 #include <cmath>
 
-char filename[] = "res/player2.bmp";
+char filename[] = "res/player2_2.bmp";
 
-GameObject gameObject(50, 50, 5);
-Sprite sprite(0, 0, 0, 0, filename);
+GameObject gameObject(100, 100, 5, filename);
 
 void displayMe(void) {
-	sprite.draw();
-	// gameObject.draw();
+	gameObject.draw();
 }
 
 int main(int argc, char** argv);

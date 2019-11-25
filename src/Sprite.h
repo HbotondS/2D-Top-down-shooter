@@ -18,6 +18,7 @@ private:
 	
 public:
 	Sprite(float, float, float, float, char*);
+	Sprite(float, float, char*);
 	~Sprite();
 	void draw();
 	void setAngle(float);
