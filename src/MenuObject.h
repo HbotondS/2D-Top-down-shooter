@@ -13,11 +13,12 @@ private:
 	 unsigned char titleSettings[9] = "Settings";
 	 unsigned char titleExit[5] = "Exit";
 
-	 unsigned char selectedItem=0; //0- None 1 - New Game, 2- Settings, 3 - Exit
+	 static unsigned char selectedItem; //0- None 1 - New Game, 2- Settings, 3 - Exit
+	
 
 
 public:
+	MenuObject();
 	void draw();
-
 };
 
