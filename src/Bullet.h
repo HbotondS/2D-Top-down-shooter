@@ -2,10 +2,18 @@
 #include "IDrawable.h"
 #include <GL/freeglut.h>
 #include "GameObject.h"
+#include <iostream>
+#include <vector>
+
 
 class Bullet : public GameObject, public IDrawable {
+
 public:
 	Bullet(float, float, int);
 	void draw();
-	void moveBullet();	
+	void moveBullet();
+	std::vector<Bullet> bullets;
+	
 };
+
+

@@ -4,10 +4,13 @@
 #include <iostream>
 #include <cmath>
 #include "MenuObject.h"
+#define max_bullet 5
 
 GameObject gameObject(50, 50, 5);
 Bullet bullet(10, 10, 1);
 MenuObject menu;
+
+
 
 void displayMe(void) {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -17,6 +20,8 @@ void displayMe(void) {
 
 	//menu.draw();
 }
+
+
 
 void MouseShoot(int, int, int, int);
 void keyboard(unsigned char, int, int);
@@ -41,12 +46,15 @@ int main(int argc, char** argv) {
 }
 
 void MouseShoot(int button, int state, int x, int y) {
-	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-		double angle2 = atan2((float) y - bullet.getPositionY(), (float) x - bullet.getPositionX());
-		bullet.setAngle(angle2);
-		bullet.moveBullet();
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+			double angle2 = atan2((float)y - bullet.getPositionY(), (float)x - bullet.getPositionX());
+			bullet.setAngle(angle2);
+			bullet.moveBullet();
+
+			
+		}
 	}
-}
+
 
 void keyboard(unsigned char key, int x, int y) {
 	switch (key) {
