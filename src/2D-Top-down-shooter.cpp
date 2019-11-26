@@ -20,7 +20,7 @@ void displayMe(void) {
 	}
 	glutSwapBuffers();
 
-	menu.draw();
+	//menu.draw();
 }
 
 
@@ -40,7 +40,9 @@ int main(int argc, char** argv) {
 	glutDisplayFunc(displayMe);
 	glutPassiveMotionFunc(mouseMove);
 	glutKeyboardFunc(keyboard);
-	glutMouseFunc(onMouse);
+	glutReshapeFunc(reshape);
+	glutTimerFunc(1, timer, 0);
+	glutMouseFunc(MouseShoot);
 	glutMainLoop();
 	return 0;
 }
