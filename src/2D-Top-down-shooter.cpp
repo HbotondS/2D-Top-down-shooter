@@ -7,7 +7,7 @@
 #define max_bullet 5
 
 GameObject gameObject(50, 50, 5);
-Bullet bullet(10, 10, 1);
+Bullet* bullet;
 MenuObject menu;
 
 
@@ -15,14 +15,13 @@ MenuObject menu;
 void displayMe(void) {
 	glClear(GL_COLOR_BUFFER_BIT);
 	gameObject.draw();
-	while (!bullet.bullets.empty()) {
-	   bullet.draw();
+	if(bullet != nullptr) {
+		bullet->draw();
 	}
 	glutSwapBuffers();
 
 	//menu.draw();
 }
-
 
 
 void MouseShoot(int, int, int, int);
@@ -49,14 +48,13 @@ int main(int argc, char** argv) {
 
 
 void MouseShoot(int button, int state, int x, int y) {
-
    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) 
 	{
-			bullet.bullets.push_back(Bullet(10,10,1));
-			double angle2 = atan2((float)y - bullet.getPositionY(), (float)x - bullet.getPositionX());
-			bullet.setAngle(angle2);
-			bullet.moveBullet();
-		
+	   bullet = new Bullet(10, 10, 1);
+	   bullet->setPositionX(gameObject.getPositionX());
+	   bullet->setPositionY(gameObject.getPositionY());
+	   double angle2 = atan2((float) y - gameObject.getPositionY(), (float) x - gameObject.getPositionX());
+	   bullet->setAngle(angle2);
 	}
 }
 
@@ -78,8 +76,7 @@ void keyboard(unsigned char key, int x, int y) {
 	case 033:
 		glutLeaveMainLoop();
 		break;
-	}
-		
+	}	
 }
 
 void mouseMove(int x, int y) {
@@ -96,6 +93,13 @@ void reshape(int width, int height) {
 }
 
 void timer(int value) {
+	if(bullet != nullptr) {
+		bullet->moveBullet();
+		if(bullet->getPositionX() > 300 || bullet->getPositionY() > 300) {
+			delete bullet;
+			bullet = nullptr;
+		}
+	}
 
 	glutPostRedisplay();
 	glutTimerFunc(1, timer, 0);

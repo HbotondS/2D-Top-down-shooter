@@ -13,6 +13,8 @@ public:
 	GameObject(float, float, float);
 	float getPositionX();
 	float getPositionY();
+	void setPositionX(float);
+	void setPositionY(float);
 	void setAngle(float);
 	float getAngle();
 	void draw();
@@ -20,5 +22,4 @@ public:
 	void moveDown(unsigned char,int,int);
 	void moveRight(unsigned char,int,int);
 	void moveLeft(unsigned char,int,int);
-	
 };

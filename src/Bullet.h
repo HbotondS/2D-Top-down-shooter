@@ -9,11 +9,9 @@
 class Bullet : public GameObject, public IDrawable {
 
 public:
-	Bullet(float, float, int);
+	Bullet(float, float, float);
+	~Bullet();
 	void draw();
 	void moveBullet();
 	std::vector<Bullet> bullets;
-	
 };
-
-

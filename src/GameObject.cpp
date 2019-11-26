@@ -2,7 +2,6 @@
 #include <iostream>
 
 
-
 GameObject::GameObject(float width, float height, float moveSpeed): width(width), height(height), moveSpeed(moveSpeed) {
 	x = 100;
 	y = 100;
@@ -32,6 +31,14 @@ float GameObject::getPositionX() {
 }
 float GameObject::getPositionY() {
 	return y;
+}
+
+void GameObject::setPositionX(float x) {
+	this->x = x;
+}
+
+void GameObject::setPositionY(float y) {
+	this->y = y;
 }
 
 void GameObject::setAngle(float angle) {
