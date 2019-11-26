@@ -17,21 +17,28 @@ Bullet::Bullet(float width, float height, int moveSpeed):GameObject(width, heigh
 
 
 
+
 void Bullet::moveBullet() {
-	for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) 
-	{
-		bullets.push_back(Bullet(x,y,moveSpeed));
-		glPushMatrix();
-		glTranslatef(x, y, 0);
-		glRotatef(angle, 0, 0, 1);
-		draw();
-		this->x =&x + moveSpeed * cos(angle);
-		this->y =&y + moveSpeed * sin(angle);
-		glPopMatrix();
+
+	//bullets.push_back(Bullet(x, y, moveSpeed));
+	for (auto it = bullets.begin(); it != bullets.end(); ++it) 
+	{  
 
 		if (x > glutGet(GLUT_WINDOW_WIDTH) || x < 0 || y > glutGet(GLUT_WINDOW_HEIGHT) || y < 0)
 		{
 			bullets.erase(it--);
+		}
+		else
+		{
+			glPushMatrix();
+			glTranslatef(x, y, 0);
+			glRotatef(angle, 0, 0, 1);
+			draw();
+		    x = x + moveSpeed * cos(angle);
+		    y = y + moveSpeed * sin(angle);
+			glPopMatrix();
+			
+			++it;
 		}
 
 	}
@@ -39,6 +46,7 @@ void Bullet::moveBullet() {
 
 
 void Bullet::draw() {
+	
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();

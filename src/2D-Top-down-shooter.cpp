@@ -15,7 +15,9 @@ MenuObject menu;
 void displayMe(void) {
 	glClear(GL_COLOR_BUFFER_BIT);
 	gameObject.draw();
-	bullet.draw();
+	while (!bullet.bullets.empty()) {
+	   bullet.draw();
+	}
 	glutSwapBuffers();
 
 	//menu.draw();
@@ -45,15 +47,18 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
+
 void MouseShoot(int button, int state, int x, int y) {
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+
+   if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) 
+	{
+			bullet.bullets.push_back(Bullet(10,10,1));
 			double angle2 = atan2((float)y - bullet.getPositionY(), (float)x - bullet.getPositionX());
 			bullet.setAngle(angle2);
 			bullet.moveBullet();
-
-			
-		}
+		
 	}
+}
 
 
 void keyboard(unsigned char key, int x, int y) {
