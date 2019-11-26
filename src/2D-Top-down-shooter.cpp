@@ -20,7 +20,7 @@ void displayMe(void) {
 	}
 	glutSwapBuffers();
 
-	//menu.draw();
+	menu.draw();
 }
 
 
@@ -29,6 +29,7 @@ void keyboard(unsigned char, int, int);
 void mouseMove(int, int);
 void reshape(int, int);
 void timer(int);
+void onMouse(int button, int state, int x, int y);
 
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);
@@ -39,9 +40,7 @@ int main(int argc, char** argv) {
 	glutDisplayFunc(displayMe);
 	glutPassiveMotionFunc(mouseMove);
 	glutKeyboardFunc(keyboard);
-	glutMouseFunc(MouseShoot);
-	glutReshapeFunc(reshape);
-	glutTimerFunc(1, timer, 0);
+	glutMouseFunc(onMouse);
 	glutMainLoop();
 	return 0;
 }
@@ -55,6 +54,26 @@ void MouseShoot(int button, int state, int x, int y) {
 	   bullet->setPositionY(gameObject.getPositionY());
 	   double angle2 = atan2((float) y - gameObject.getPositionY(), (float) x - gameObject.getPositionX());
 	   bullet->setAngle(angle2);
+	}
+}
+
+void onMouse(int button, int state, int x, int y) {
+	if (state != GLUT_DOWN)
+		return;
+
+	int window_width = glutGet(GLUT_WINDOW_WIDTH);
+	int window_height = glutGet(GLUT_WINDOW_HEIGHT);
+
+	GLbyte color[4];
+	GLfloat depth;
+	GLuint index;
+
+	glReadPixels(x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &index);
+
+	int selected=index;
+	switch (selected) {
+	case 3:exit(0);
+		break;
 	}
 }
 
