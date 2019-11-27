@@ -4,7 +4,7 @@
 #include <GL/freeglut.h>
 
 class GameObject : public IDrawable {
-private:
+protected:
 	float x, y;
 	float width, height;
 	float origoX, origoY;
@@ -15,6 +15,8 @@ public:
 	GameObject(float, float, float, char*);
 	float getPositionX();
 	float getPositionY();
+	void setPositionX(float);
+	void setPositionY(float);
 	void setAngle(float);
 	float getAngle();
 	void draw();

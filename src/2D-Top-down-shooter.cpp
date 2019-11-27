@@ -1,24 +1,37 @@
 #include <GL/freeglut.h>
 #include "GameObject.h"
+#include "Bullet.h"
 #include "RgbImage.h"
 #include "Sprite.h"
 #include <iostream>
 #include <cmath>
+#include "MenuObject.h"
+#define max_bullet 5
 
+Bullet* bullet;
+MenuObject menu;
 char filename[] = "res/player2_2.bmp";
 
 GameObject gameObject(100, 100, 5, filename);
 
 void displayMe(void) {
+	glClear(GL_COLOR_BUFFER_BIT);
 	gameObject.draw();
+	if(bullet != nullptr) {
+		bullet->draw();
+	}
+	glutSwapBuffers();
+
+	//menu.draw();
 }
 
-int main(int argc, char** argv);
 
+void MouseShoot(int, int, int, int);
 void keyboard(unsigned char, int, int);
 void mouseMove(int, int);
 void reshape(int, int);
 void timer(int);
+void onMouse(int button, int state, int x, int y);
 
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);
@@ -31,8 +44,41 @@ int main(int argc, char** argv) {
 	glutKeyboardFunc(keyboard);
 	glutReshapeFunc(reshape);
 	glutTimerFunc(1, timer, 0);
+	glutMouseFunc(MouseShoot);
 	glutMainLoop();
 	return 0;
+}
+
+
+void MouseShoot(int button, int state, int x, int y) {
+   if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) 
+	{
+	   bullet = new Bullet(10, 10, 50);
+	   bullet->setPositionX(gameObject.getPositionX());
+	   bullet->setPositionY(gameObject.getPositionY());
+	   double angle2 = atan2((float) y - gameObject.getPositionY(), (float) x - gameObject.getPositionX());
+	   bullet->setAngle(angle2);
+	}
+}
+
+void onMouse(int button, int state, int x, int y) {
+	if (state != GLUT_DOWN)
+		return;
+
+	int window_width = glutGet(GLUT_WINDOW_WIDTH);
+	int window_height = glutGet(GLUT_WINDOW_HEIGHT);
+
+	GLbyte color[4];
+	GLfloat depth;
+	GLuint index;
+
+	glReadPixels(x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &index);
+
+	int selected=index;
+	switch (selected) {
+	case 3:exit(0);
+		break;
+	}
 }
 
 
@@ -53,7 +99,7 @@ void keyboard(unsigned char key, int x, int y) {
 	case 033:
 		glutLeaveMainLoop();
 		break;
-	}
+	}	
 }
 
 void mouseMove(int x, int y) {
@@ -70,6 +116,14 @@ void reshape(int width, int height) {
 }
 
 void timer(int value) {
+	if(bullet != nullptr) {
+		bullet->moveBullet();
+		if(bullet->getPositionX() > glutGet(GLUT_WINDOW_WIDTH) || bullet->getPositionY() > glutGet(GLUT_WINDOW_HEIGHT)) {
+			delete bullet;
+			bullet = nullptr;
+		}
+	}
+
 	glutPostRedisplay();
 	glutTimerFunc(1, timer, 0);
 }

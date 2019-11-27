@@ -13,7 +13,6 @@ GameObject::GameObject(float width, float height, float moveSpeed, char* texture
 }
 
 void GameObject::draw() {
-	glClear(GL_COLOR_BUFFER_BIT);
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
@@ -21,7 +20,6 @@ void GameObject::draw() {
 	glRotatef(angle, 0, 0, 1);
 	sprite->draw();
 	glPopMatrix();
-	glutSwapBuffers();
 }
 
 
@@ -30,6 +28,14 @@ float GameObject::getPositionX() {
 }
 float GameObject::getPositionY() {
 	return y;
+}
+
+void GameObject::setPositionX(float x) {
+	this->x = x;
+}
+
+void GameObject::setPositionY(float y) {
+	this->y = y;
 }
 
 void GameObject::setAngle(float angle) {
