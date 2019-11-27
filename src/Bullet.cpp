@@ -4,7 +4,7 @@
 #include <math.h>
 
 
-Bullet::Bullet(float width, float height, float moveSpeed):GameObject(width, height, moveSpeed) {
+Bullet::Bullet(float width, float height, float moveSpeed):GameObject(width, height, moveSpeed, nullptr) {
 	x = GameObject::getPositionX();
 	y = GameObject::getPositionY();
 	origoX = width / 2;

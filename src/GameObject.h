@@ -1,5 +1,6 @@
 #pragma once
 #include "IDrawable.h"
+#include "Sprite.h"
 #include <GL/freeglut.h>
 
 class GameObject : public IDrawable {
@@ -9,8 +10,9 @@ protected:
 	float origoX, origoY;
 	float moveSpeed;
 	float angle;
+	Sprite* sprite;
 public:
-	GameObject(float, float, float);
+	GameObject(float, float, float, char*);
 	float getPositionX();
 	float getPositionY();
 	void setPositionX(float);

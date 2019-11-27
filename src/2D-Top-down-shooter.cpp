@@ -1,16 +1,18 @@
 #include <GL/freeglut.h>
 #include "GameObject.h"
 #include "Bullet.h"
+#include "RgbImage.h"
+#include "Sprite.h"
 #include <iostream>
 #include <cmath>
 #include "MenuObject.h"
 #define max_bullet 5
 
-GameObject gameObject(50, 50, 5);
 Bullet* bullet;
 MenuObject menu;
+char filename[] = "res/player2_2.bmp";
 
-
+GameObject gameObject(100, 100, 5, filename);
 
 void displayMe(void) {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -51,7 +53,7 @@ int main(int argc, char** argv) {
 void MouseShoot(int button, int state, int x, int y) {
    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) 
 	{
-	   bullet = new Bullet(10, 10, 1);
+	   bullet = new Bullet(10, 10, 50);
 	   bullet->setPositionX(gameObject.getPositionX());
 	   bullet->setPositionY(gameObject.getPositionY());
 	   double angle2 = atan2((float) y - gameObject.getPositionY(), (float) x - gameObject.getPositionX());
@@ -109,14 +111,14 @@ void reshape(int width, int height) {
 	glViewport(0, 0, (GLsizei) width, (GLsizei) height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0, 300, 300, 0, -1, 1);
+	glOrtho(0, glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT), 0, -1, 1);
 	glMatrixMode(GL_MODELVIEW);
 }
 
 void timer(int value) {
 	if(bullet != nullptr) {
 		bullet->moveBullet();
-		if(bullet->getPositionX() > 300 || bullet->getPositionY() > 300) {
+		if(bullet->getPositionX() > glutGet(GLUT_WINDOW_WIDTH) || bullet->getPositionY() > glutGet(GLUT_WINDOW_HEIGHT)) {
 			delete bullet;
 			bullet = nullptr;
 		}
