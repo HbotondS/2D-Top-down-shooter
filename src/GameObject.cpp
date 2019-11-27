@@ -2,7 +2,9 @@
 #include <iostream>
 
 
-GameObject::GameObject(float width, float height, float moveSpeed): width(width), height(height), moveSpeed(moveSpeed) {
+
+GameObject::GameObject(float width, float height, float moveSpeed, char* textureLocation): width(width), height(height), moveSpeed(moveSpeed) {
+	sprite = new Sprite(width, height, textureLocation);
 	x = 100;
 	y = 100;
 	origoX = width / 2;
@@ -16,12 +18,7 @@ void GameObject::draw() {
 	glPushMatrix();
 	glTranslatef(x, y, 0);
 	glRotatef(angle, 0, 0, 1);
-	glBegin(GL_POLYGON);
-	glVertex2f(-origoX, -origoY);
-	glVertex2f(-origoX + width, -origoY);
-	glVertex2f(-origoX + width, -origoY + height);
-	glVertex2f(-origoX, -origoY + height);
-	glEnd();
+	sprite->draw();
 	glPopMatrix();
 }
 
@@ -53,26 +50,22 @@ void GameObject::moveUP(unsigned char key, int xmouse, int ymouse){
 	key = 'w';
 	y -= moveSpeed;
 	// std::cout << y << std::endl;
-	glutPostRedisplay();
 }
 
 void GameObject::moveDown(unsigned char key, int xmouse, int ymouse){
 	key = 's';
 	y += moveSpeed;
 	// std::cout << y << std::endl;
-	glutPostRedisplay();
 }
 
 void GameObject::moveLeft(unsigned char key,int xmouse, int ymouse){
 	key = 'a';
 	x -= moveSpeed;
 	// std::cout << x << std::endl;
-	glutPostRedisplay();
 }
 
 void GameObject::moveRight(unsigned char key, int xmouse, int ymouse) {
 	key = 'd';
 	x += moveSpeed;
 	// std::cout << x << std::endl;
-	glutPostRedisplay();
 }

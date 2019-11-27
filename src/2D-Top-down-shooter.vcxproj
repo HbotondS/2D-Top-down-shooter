@@ -164,17 +164,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="2D-Top-down-shooter.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="RgbImage.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="MenuObject.cpp" />
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="GameObject.cpp">
-      <FileType>CppClass</FileType>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="MenuObject.h" />
+    <ClInclude Include="RgbImage.h" />
+    <ClInclude Include="Sprite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
