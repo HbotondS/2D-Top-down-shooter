@@ -1,22 +1,20 @@
 #include <GL/freeglut.h>
-#include "GameObject.h"
-#include "Bullet.h"
-#include "RgbImage.h"
-#include "Sprite.h"
 #include <iostream>
 #include <cmath>
+#include "Bullet.h"
 #include "MenuObject.h"
+#include "Player.h"
 #define max_bullet 5
 
 Bullet* bullet;
 MenuObject menu;
 char filename[] = "res/player2_2.bmp";
 
-GameObject gameObject(100, 100, 5, filename);
+Player player(100, 100, 5, filename);
 
 void displayMe(void) {
 	glClear(GL_COLOR_BUFFER_BIT);
-	gameObject.draw();
+	player.draw();
 	if(bullet != nullptr) {
 		bullet->draw();
 	}
@@ -54,9 +52,9 @@ void MouseShoot(int button, int state, int x, int y) {
    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) 
 	{
 	   bullet = new Bullet(10, 10, 50);
-	   bullet->setPositionX(gameObject.getPositionX());
-	   bullet->setPositionY(gameObject.getPositionY());
-	   double angle2 = atan2((float) y - gameObject.getPositionY(), (float) x - gameObject.getPositionX());
+	   bullet->setPositionX(player.getPositionX());
+	   bullet->setPositionY(player.getPositionY());
+	   double angle2 = atan2((float) y - player.getPositionY(), (float) x - player.getPositionX());
 	   bullet->setAngle(angle2);
 	}
 }
@@ -85,16 +83,16 @@ void onMouse(int button, int state, int x, int y) {
 void keyboard(unsigned char key, int x, int y) {
 	switch (key) {
 	case 'w':
-		gameObject.moveUP(key, x, y);
+		player.moveUP();
 		break;
 	case 's':
-		gameObject.moveDown(key, x, y);
+		player.moveDown();
 		break;
 	case 'a':
-		gameObject.moveLeft(key, x, y);
+		player.moveLeft();
 		break;
 	case 'd':
-		gameObject.moveRight(key, x, y);
+		player.moveRight();
 		break;
 	case 033:
 		glutLeaveMainLoop();
@@ -103,8 +101,8 @@ void keyboard(unsigned char key, int x, int y) {
 }
 
 void mouseMove(int x, int y) {
-	double angle2 = atan2((float) y - gameObject.getPositionY(), (float) x - gameObject.getPositionX()) * 180 / 3.15;
-	gameObject.setAngle(angle2);
+	double angle = atan2((float) y - player.getPositionY(), (float) x - player.getPositionX()) * 180 / 3.15;
+	player.setAngle(angle);
 }
 
 void reshape(int width, int height) {

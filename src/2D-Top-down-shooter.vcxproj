@@ -164,7 +164,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="2D-Top-down-shooter.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="RgbImage.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="MenuObject.cpp" />
@@ -172,9 +173,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="MenuObject.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="RgbImage.h" />
     <ClInclude Include="Sprite.h" />
   </ItemGroup>
