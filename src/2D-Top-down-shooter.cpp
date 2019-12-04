@@ -1,28 +1,18 @@
 #include <GL/freeglut.h>
 #include <iostream>
 #include <cmath>
-#include "Bullet.h"
 #include "MenuObject.h"
-#include "Player.h"
-#define max_bullet 5
+#include "Game.h"
 
-Bullet* bullet;
 MenuObject menu;
-char filename[] = "res/player2_2.bmp";
 
-Player player(100, 100, 5, filename);
+Game* game = new Game();
 
 void displayMe(void) {
-	glClear(GL_COLOR_BUFFER_BIT);
-	player.draw();
-	if(bullet != nullptr) {
-		bullet->draw();
-	}
-	glutSwapBuffers();
+	game->draw();
 
-	//menu.draw();
+	// menu.draw();
 }
-
 
 void MouseShoot(int, int, int, int);
 void keyboard(unsigned char, int, int);
@@ -32,6 +22,7 @@ void timer(int);
 void onMouse(int button, int state, int x, int y);
 
 int main(int argc, char** argv) {
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE);
 	glutInitWindowSize(300, 300);
@@ -49,14 +40,7 @@ int main(int argc, char** argv) {
 
 
 void MouseShoot(int button, int state, int x, int y) {
-   if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) 
-	{
-	   bullet = new Bullet(10, 10, 50);
-	   bullet->setPositionX(player.getPositionX());
-	   bullet->setPositionY(player.getPositionY());
-	   double angle2 = atan2((float) y - player.getPositionY(), (float) x - player.getPositionX());
-	   bullet->setAngle(angle2);
-	}
+	game->onMouseClicked(button, state, x, y);
 }
 
 void onMouse(int button, int state, int x, int y) {
@@ -81,28 +65,11 @@ void onMouse(int button, int state, int x, int y) {
 
 
 void keyboard(unsigned char key, int x, int y) {
-	switch (key) {
-	case 'w':
-		player.moveUP();
-		break;
-	case 's':
-		player.moveDown();
-		break;
-	case 'a':
-		player.moveLeft();
-		break;
-	case 'd':
-		player.moveRight();
-		break;
-	case 033:
-		glutLeaveMainLoop();
-		break;
-	}	
+	game->onKeyPressed(key, x, y);
 }
 
 void mouseMove(int x, int y) {
-	double angle = atan2((float) y - player.getPositionY(), (float) x - player.getPositionX()) * 180 / 3.15;
-	player.setAngle(angle);
+	game->onMouseMove(x, y);
 }
 
 void reshape(int width, int height) {
@@ -114,14 +81,5 @@ void reshape(int width, int height) {
 }
 
 void timer(int value) {
-	if(bullet != nullptr) {
-		bullet->moveBullet();
-		if(bullet->getPositionX() > glutGet(GLUT_WINDOW_WIDTH) || bullet->getPositionY() > glutGet(GLUT_WINDOW_HEIGHT)) {
-			delete bullet;
-			bullet = nullptr;
-		}
-	}
-
-	glutPostRedisplay();
-	glutTimerFunc(1, timer, 0);
+	game->timer(timer);
 }

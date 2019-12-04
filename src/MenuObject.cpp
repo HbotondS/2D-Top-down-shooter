@@ -31,7 +31,7 @@ void MenuObject::draw_menu_item(const unsigned char* title, float offset)
 	glEnd();
 	RenderString(x + (width / 4), y - offset + (height / 3), GLUT_BITMAP_TIMES_ROMAN_24, 255, 255, 255, title);
 
-	glFlush();
+	//glFlush();
 }
 
 void MenuObject::draw() {
@@ -39,7 +39,6 @@ void MenuObject::draw() {
 	glEnable(GL_STENCIL_TEST);
 	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
-	std::cout << "draw";
 	unsigned char* tmpBuffer = &titleNewGame[0];
 
 	float offset = 0;
