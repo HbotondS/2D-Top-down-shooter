@@ -61,3 +61,16 @@ void Game::draw() {
 	}
 	glutSwapBuffers();
 }
+
+// AABB (axis-aligned bounding box) collision
+bool Game::detectCollision(Entity* entity1, Entity* entity2) {
+	if(entity2 == nullptr) {
+		return false;
+	}
+	bool collisionX = entity1->getPositionX() + entity1->getWidth() >= entity2->getPositionX() &&
+		entity2->getPositionX() + entity2->getWidth() >= entity1->getPositionX();
+	bool collisionY = entity1->getPositionY() + entity1->getHeight() >= entity2->getPositionY() &&
+		entity2->getPositionY() + entity2->getHeight() >= entity1->getPositionY();
+
+	return collisionX && collisionY;
+}

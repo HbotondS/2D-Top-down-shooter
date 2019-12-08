@@ -1,5 +1,6 @@
 #include <iostream>
 #include <GL/freeglut.h>
+#include "Entity.h"
 #include "Player.h"
 #include "Bullet.h"
 
@@ -15,4 +16,5 @@ public:
 	void onMouseMove(int x, int y);
 	void timer(void (*t)(int));
 	void draw();
+	bool detectCollision(Entity* entity1, Entity* entity2);
 };
