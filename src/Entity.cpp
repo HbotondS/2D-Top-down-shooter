@@ -9,3 +9,11 @@ Entity::Entity(float width, float height, float moveSpeed, char* textureLocation
 	origoY = height / 2;
 	angle = 0;
 }
+
+float Entity::getWidth() {
+	return width;
+}
+
+float Entity::getHeight() {
+	return height;
+}

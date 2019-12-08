@@ -1,7 +1,7 @@
 #pragma once
 #include "Entity.h"
 
-class Player : Entity {
+class Player : public Entity {
 public:
 	Player(float, float, float, char*);
 	~Player() {};
