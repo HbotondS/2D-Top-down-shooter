@@ -1,19 +1,38 @@
 #include "Bullet.h"
-#include "GameObject.h"
+#include "Entity.h"
 #include <iostream>
 #include <math.h>
 
-
-Bullet::Bullet(float width, float height, float moveSpeed):GameObject(width, height, moveSpeed, nullptr) {
-	x = GameObject::getPositionX();
-	y = GameObject::getPositionY();
+Bullet::Bullet(float width, float height, float moveSpeed): Entity(width, height, moveSpeed, nullptr) {
 	origoX = width / 2;
 	origoY = height / 2;
 	angle = 0;
 	moveSpeed = 1;
 }
 
-Bullet::~Bullet() {
+Bullet::~Bullet() {}
+
+float Bullet::getPositionX() {
+	return x;
+}
+float Bullet::getPositionY() {
+	return y;
+}
+
+void Bullet::setPositionX(float x) {
+	this->x = x;
+}
+
+void Bullet::setPositionY(float y) {
+	this->y = y;
+}
+
+void Bullet::setAngle(float angle) {
+	this->angle = angle;
+}
+
+float Bullet::getAngle() {
+	return angle;
 }
 
 void Bullet::moveBullet() {
@@ -25,7 +44,6 @@ void Bullet::moveBullet() {
 	glPopMatrix();
 	draw();
 }
-
 
 void Bullet::draw() {
 	glLoadIdentity();
