@@ -5,6 +5,32 @@ Game::Game() {
 	player = new Player(100, 100, 5, filename);
 }
 
+// found in OpenGL Game Development by Example 
+void Game::SpawnEnemy() {
+	enemy = new Enemy(100, 100, 5, filename);
+	float marginX = enemy->getWidth();
+	float marginY = enemy->getHeight();
+	float spawnX = (rand() % (int)(glutGet(GLUT_WINDOW_WIDTH) - (marginX * 2))) + marginX;
+	float spawnY = glutGet(GLUT_WINDOW_HEIGHT) - ((rand() % (int)(player->getHeight() - (marginY * 2))) + marginY);
+	enemy->setPositionX(spawnX);
+	enemy->setPositionY(spawnY);
+	enemy->setAngle(player->getAngle());
+}
+
+
+void Game::moveEnemy() {
+	float dirX = player->getPositionX() - enemy->getPositionX();
+	float dirY = player->getPositionY() - enemy->getPositionY();
+	float normalize = sqrt(dirX * dirX + dirY * dirY);
+	dirX /= normalize;
+	dirY /= normalize;
+	enemy->setPositionX(enemy->getPositionX() + dirX * enemy->getMoveSpeed());
+	enemy->setPositionY(enemy->getPositionY() + dirY * enemy->getMoveSpeed());
+}
+
+
+
+
 void Game::onKeyPressed(unsigned char key, int x, int y) {
 	switch(key) {
 	case 'w':
@@ -48,6 +74,9 @@ void Game::timer(void(*t)(int)) {
 			bullet = nullptr;
 		}
 	}
+	if (enemy != nullptr) {
+		moveEnemy();
+	}
 
 	glutPostRedisplay();
 	glutTimerFunc(1, t, 0);
@@ -58,6 +87,10 @@ void Game::draw() {
 	player->draw();
 	if(bullet != nullptr) {
 		bullet->draw();
+	}
+	if (enemy == nullptr) {
+		SpawnEnemy();
+		enemy->draw();
 	}
 	glutSwapBuffers();
 }
