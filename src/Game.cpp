@@ -2,19 +2,19 @@
 
 Game::Game() {
 	filename = _strdup("res/player2_2.bmp");
+	filename2 = _strdup("res/enemy.bmp");
 	player = new Player(100, 100, 5, filename);
 }
 
 // found in OpenGL Game Development by Example 
 void Game::SpawnEnemy() {
-	enemy = new Enemy(100, 100, 1, filename);
+	enemy = new Enemy(70, 70, 1, filename2);
 	float marginX = enemy->getWidth();
 	float marginY = enemy->getHeight();
 	float spawnX = (rand() % (int)(glutGet(GLUT_WINDOW_WIDTH) - (marginX * 2))) + marginX;
 	float spawnY = glutGet(GLUT_WINDOW_HEIGHT) - ((rand() % (int)(player->getHeight() - (marginY * 2))) + marginY);
 	enemy->setPositionX(spawnX);
 	enemy->setPositionY(spawnY);
-	enemy->setAngle(player->getAngle());
 }
 
 
@@ -26,6 +26,9 @@ void Game::moveEnemy() {
 	dirY /= normalize;
 	enemy->setPositionX(enemy->getPositionX() + dirX * enemy->getMoveSpeed());
 	enemy->setPositionY(enemy->getPositionY() + dirY * enemy->getMoveSpeed());
+
+	double angle = atan2(dirY, dirX) * 180 / 3.15;
+	enemy->setAngle(angle);
 }
 
 
