@@ -7,7 +7,7 @@ Game::Game() {
 
 // found in OpenGL Game Development by Example 
 void Game::SpawnEnemy() {
-	enemy = new Enemy(100, 100, 5, filename);
+	enemy = new Enemy(100, 100, 1, filename);
 	float marginX = enemy->getWidth();
 	float marginY = enemy->getHeight();
 	float spawnX = (rand() % (int)(glutGet(GLUT_WINDOW_WIDTH) - (marginX * 2))) + marginX;
@@ -78,21 +78,31 @@ void Game::timer(void(*t)(int)) {
 		moveEnemy();
 	}
 
+	if(detectCollision(enemy, bullet)) {
+		delete enemy;
+		enemy = nullptr;
+		delete bullet;
+		bullet = nullptr;
+	}
+
 	glutPostRedisplay();
 	glutTimerFunc(1, t, 0);
 }
 
 void Game::draw() {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	player->draw();
 	if(bullet != nullptr) {
 		bullet->draw();
 	}
 	if (enemy == nullptr) {
 		SpawnEnemy();
+	} else {
 		enemy->draw();
 	}
 	glutSwapBuffers();
+
+	glFlush();
 }
 
 // AABB (axis-aligned bounding box) collision
