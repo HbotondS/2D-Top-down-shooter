@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <time.h>
 
 Game::Game() {
 	filename = _strdup("res/player2_2.bmp");
@@ -6,7 +7,7 @@ Game::Game() {
 	player = new Player(100, 100, 5, filename, 100);
 }
 
-// found in OpenGL Game Development by Example 
+// found in OpenGL Game Development by Example just rewrote to be compatible with this program 
 void Game::SpawnEnemy() {
 	enemy = new Enemy(70, 70, 1, filename2, 100, 10);
 	float marginX = enemy->getWidth();
@@ -30,9 +31,6 @@ void Game::moveEnemy() {
 	double angle = atan2(dirY, dirX) * 180 / 3.15;
 	enemy->setAngle(angle);
 }
-
-
-
 
 void Game::onKeyPressed(unsigned char key, int x, int y) {
 	switch(key) {
@@ -81,27 +79,26 @@ void Game::timer(void(*t)(int)) {
 		moveEnemy();
 	}
 
-	if(detectCollision(enemy, bullet)) {
+	if (detectCollision(enemy, bullet)) {
+
 		enemy->setHealth(enemy->getHealth() - bullet->getDamage());
 		delete bullet;
 		bullet = nullptr;
+		enemy->setPositionX(enemy->getPositionX() + 20);
+		enemy->setPositionY(enemy->getPositionY() + 20);
 		if (enemy->getHealth() == 0) {
 			enemy = nullptr;
 			delete enemy;
 		}
 	}
 
-
 	if (detectCollision(player, enemy)) {
 		player->setHealth(player->getHealth() - enemy->getDamage());
-
-		if (player->getHealth() == 0) {
-			//player == nullptr;
-			//delete player;
-			//game over.. 
+		player->setPositionX(player->getPositionX() - 20);
+		player->setPositionY(player->getPositionY() - 20);
+		if (player->getHealth() <= 0) {
+			exit(0);
 		}
-
-		//sethp
 	}
 
 	glutPostRedisplay();

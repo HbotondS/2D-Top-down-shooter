@@ -22,4 +22,5 @@ public:
 	bool detectCollision(Entity* entity1, Entity* entity2);
 	void SpawnEnemy();
 	void moveEnemy();
+	
 };

@@ -56,17 +56,6 @@ float Enemy::getMoveSpeed() {
 	return moveSpeed;
 }
 
-/*
-void Enemy::moveEnemy() {
-	glPushMatrix();
-	glTranslatef(x, y, 0);
-	glRotatef(angle, 0, 0, 1);
-	x += moveSpeed * cos(angle);
-	y += moveSpeed * sin(angle);
-	glPopMatrix();
-	draw();
-}
-*/
 void Enemy::draw() {
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
