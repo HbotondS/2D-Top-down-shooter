@@ -4,7 +4,7 @@
 class Enemy : public Entity {
 
 public:
-	Enemy(float, float, float, char*);
+	Enemy(float, float, float, char*, float, float);
 	~Enemy() {};
 	float getPositionX();
 	float getPositionY();
@@ -15,6 +15,10 @@ public:
 	float getMoveSpeed();
 	void moveEnemy();
 	void draw();
+	void setDamage(float);
+	void setHealth(float);
+	float getHealth();
+	float getDamage();
 
 
 };

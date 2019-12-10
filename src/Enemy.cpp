@@ -2,7 +2,7 @@
 #include "Enemy.h"
 #include <math.h>
 
-Enemy::Enemy(float width, float height, float moveSpeed, char* textureLocation) : Entity(width, height, moveSpeed, textureLocation) {
+Enemy::Enemy(float width, float height, float moveSpeed, char* textureLocation, float health, float damage) : Entity(width, height, moveSpeed, textureLocation, health, damage) {
 	sprite = new Sprite(width, height, textureLocation);
 	x = 100;
 	y = 100;
@@ -11,6 +11,22 @@ Enemy::Enemy(float width, float height, float moveSpeed, char* textureLocation) 
 	angle = 0;
 	health = 100;
 	damage = 10;
+}
+
+void Enemy::setDamage(float damage){
+	this->damage = damage;
+}
+
+float Enemy::getDamage() {
+	return damage;
+}
+
+void Enemy::setHealth(float health) {
+	this->health = health;
+}
+
+float Enemy::getHealth() {
+	return health;
 }
 
 float Enemy::getPositionX() {

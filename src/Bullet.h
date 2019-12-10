@@ -10,7 +10,7 @@ class Bullet : public Entity {
 public:
 	std::vector<Bullet> bullets;
 
-	Bullet(float, float, float);
+	Bullet(float, float, float, float);
 	~Bullet();
 	void draw();
 	void moveBullet();
@@ -20,4 +20,6 @@ public:
 	void setPositionY(float);
 	void setAngle(float);
 	float getAngle();
+	void setDamage(float);
+	float getDamage();
 };

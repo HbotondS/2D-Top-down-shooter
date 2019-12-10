@@ -3,14 +3,23 @@
 #include <iostream>
 #include <math.h>
 
-Bullet::Bullet(float width, float height, float moveSpeed): Entity(width, height, moveSpeed, nullptr) {
+Bullet::Bullet(float width, float height, float moveSpeed, float damage) : Entity(width, height, moveSpeed, nullptr ,0 , damage) {
 	origoX = width / 2;
 	origoY = height / 2;
 	angle = 0;
 	moveSpeed = 1;
+	damage = 20;
 }
 
 Bullet::~Bullet() {}
+
+float Bullet::getDamage() {
+	return damage;
+}
+
+void Bullet::setDamage(float damage) {
+	this->damage = damage;
+}
 
 float Bullet::getPositionX() {
 	return x;

@@ -3,7 +3,7 @@
 
 class Player : public Entity {
 public:
-	Player(float, float, float, char*);
+	Player(float, float, float, char*, float );
 	~Player() {};
 	float getPositionX();
 	float getPositionY();
@@ -16,5 +16,7 @@ public:
 	void moveDown();
 	void moveRight();
 	void moveLeft();
+	void setHealth(float);
+	float getHealth();
 };
 

@@ -11,9 +11,9 @@ protected:
 	float moveSpeed;
 	float angle;
 	Sprite* sprite;
-	int health, damage;
+	float health, damage;
 public:
-	Entity(float, float, float, char*);
+	Entity(float, float, float, char*, float, float);
 	virtual float getPositionX() = 0;
 	virtual float getPositionY() = 0;
 	virtual void setPositionX(float) = 0;
