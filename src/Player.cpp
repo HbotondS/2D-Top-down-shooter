@@ -40,6 +40,7 @@ void Player::draw() {
 	glRotatef(angle, 0, 0, 1);
 	sprite->draw();
 	glPopMatrix();
+	glFlush();
 }
 
 void Player::moveUP() {
