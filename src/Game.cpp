@@ -82,10 +82,9 @@ void Game::timer(void(*t)(int)) {
 	if (detectCollision(enemy, bullet)) {
 
 		enemy->setHealth(enemy->getHealth() - bullet->getDamage());
+		pushBack(bullet, enemy);
 		delete bullet;
 		bullet = nullptr;
-		enemy->setPositionX(enemy->getPositionX() + 20);
-		enemy->setPositionY(enemy->getPositionY() + 20);
 		if (enemy->getHealth() == 0) {
 			enemy = nullptr;
 			delete enemy;
@@ -94,8 +93,7 @@ void Game::timer(void(*t)(int)) {
 
 	if (detectCollision(player, enemy)) {
 		player->setHealth(player->getHealth() - enemy->getDamage());
-		player->setPositionX(player->getPositionX() - 20);
-		player->setPositionY(player->getPositionY() - 20);
+		pushBack(enemy, player);
 		if (player->getHealth() <= 0) {
 			exit(0);
 		}
@@ -132,4 +130,44 @@ bool Game::detectCollision(Entity* entity1, Entity* entity2) {
 		entity2->getPositionY() + entity2->getHeight() >= entity1->getPositionY();
 
 	return collisionX && collisionY;
+}
+
+void Game::pushBack(Entity* entity1, Entity* entity2) {
+		// bal felso sarokba loki 
+	if (entity1->getPositionX() > entity2->getPositionX() && entity1->getPositionY() > entity2->getPositionY())
+	{
+		entity2->setPositionX(entity2->getPositionX() - 30);
+		entity2->setPositionY(entity2->getPositionY() - 30);
+	}
+		//bal also sarokba loki
+	if (entity1->getPositionX() > entity2->getPositionX() && entity1->getPositionY() < entity2->getPositionY()) {
+		entity2->setPositionX(entity2->getPositionX() - 30);
+		entity2->setPositionY(entity2->getPositionY() + 30);
+	}
+		//jobb felso sarokba loki
+	if (entity1->getPositionX() < entity2->getPositionX() && entity1->getPositionY() > entity2->getPositionY()) {
+		entity2->setPositionX(entity2->getPositionX() + 30);
+		entity2->setPositionY(entity2->getPositionY() - 30);
+	}
+		//jobb also sarokba loki
+	if (entity1->getPositionX() < entity2->getPositionX() && entity1->getPositionY() < entity2->getPositionY()) {
+		entity2->setPositionX(entity2->getPositionX() + 30);
+		entity2->setPositionY(entity2->getPositionY() + 30);
+	}
+		// felfele loki
+	if (entity1->getPositionX() == entity2->getPositionX() && entity1->getPositionY() > entity2->getPositionY())
+		entity2->setPositionY(entity2->getPositionY() - 30);
+		
+		//lefele loki
+	if (entity1->getPositionX() == entity2->getPositionX() && entity1->getPositionY() < entity2->getPositionY())
+		entity2->setPositionY(entity2->getPositionY() + 30);
+						
+		//jobbra loki 
+	if (entity1->getPositionX() < entity2->getPositionX() && entity1->getPositionY() == entity2->getPositionY())
+		entity2->setPositionX(entity2->getPositionX() + 30);
+								
+		//balra loki
+	if (entity1->getPositionX() > entity2->getPositionX() && entity1->getPositionY() == entity2->getPositionY())
+		entity2->setPositionX(entity2->getPositionX() - 30);
+
 }

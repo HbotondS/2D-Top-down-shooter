@@ -13,7 +13,6 @@ public:
 	void setAngle(float);
 	float getAngle();
 	float getMoveSpeed();
-	void moveEnemy();
 	void draw();
 	void setDamage(float);
 	void setHealth(float);
