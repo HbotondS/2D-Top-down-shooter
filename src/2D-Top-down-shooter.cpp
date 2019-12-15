@@ -12,10 +12,12 @@ Game* game = new Game();
 
 void displayMenu(void) {
 	//game->draw();
+	game->setGameMode(menu.getGameMode());
 	 menu.draw();
 }
 
 void displayGame(void) {
+	
 	game->draw();
 }
 
@@ -39,7 +41,6 @@ int main(int argc, char** argv) {
 	glutMainLoop();
 	return 0;
 }
-
 
 void MouseShoot(int button, int state, int x, int y) {
 	game->onMouseClicked(button, state, x, y);
@@ -71,6 +72,33 @@ void onMouseMenu(int button, int state, int x, int y) {
 	}
 }
 
+void onMouseSettings(int button, int state, int x, int y){
+	if (state != GLUT_DOWN)
+		return;
+
+	int window_width = glutGet(GLUT_WINDOW_WIDTH);
+	int window_height = glutGet(GLUT_WINDOW_HEIGHT);
+
+	GLbyte color[4];
+	GLfloat depth;
+	GLuint index;
+
+	glReadPixels(x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &index);
+
+	int selected = index;
+	switch (selected) {
+		case 1: {
+			menu.changeGameMode();
+			menu.drawSettings();
+		} break;
+		case 2: {
+			glutDisplayFunc(displayMenu);
+			glutMouseFunc(onMouseMenu);
+		}
+	}
+
+}
+
 void keyboard(unsigned char key, int x, int y) {
 	game->onKeyPressed(key, x, y);
 }
@@ -79,7 +107,13 @@ void mouseMove(int x, int y) {
 	game->onMouseMove(x, y);
 }
 
+void displaySettings() {
+	menu.drawSettings();
+}
+
 void startSettings() {
+	glutDisplayFunc(displaySettings);
+	glutMouseFunc(onMouseSettings);
 }
 
 // initialize Game functions such as Mouse and Keyboard, change the menu draw function
@@ -93,6 +127,7 @@ void startNewGame() {
 	glutMouseFunc(MouseShoot);
 	glutFullScreen();
 }
+
 
 void reshape(int width, int height) {
 	glViewport(0, 0, (GLsizei)width, (GLsizei)height);
