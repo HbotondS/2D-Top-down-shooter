@@ -1,6 +1,22 @@
 #include "Sprite.h"
 #include <iostream>
 
+Sprite::Sprite(float x, float y, float width, float height, char* filename)
+	: x(x), y(y), width(width), height(height), filename(filename) {
+	angle = 0;
+	origoX = width / 2;
+	origoY = height / 2;
+}
+
+Sprite::Sprite(float width, float height, char* filename)
+	: width(width), height(height), filename(filename) {
+	angle = 0;
+	origoX = width / 2;
+	origoY = height / 2;
+}
+
+Sprite::~Sprite() {}
+
 void Sprite::loadTextureFromFile(char* filename) {
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glShadeModel(GL_FLAT);
@@ -15,24 +31,6 @@ void Sprite::loadTextureFromFile(char* filename) {
 	gluBuild2DMipmaps(GL_TEXTURE_2D, 3, theTexMap.GetNumCols(), theTexMap.GetNumRows(),
 		GL_RGB, GL_UNSIGNED_BYTE, theTexMap.ImageData());
 }
-
-void Sprite::drawTextureQuad() {}
-
-Sprite::Sprite(float x, float y, float width, float height, char* filename)
-		: x(x), y(y), width(width), height(height), filename(filename) {
-	angle = 0;
-	origoX = width / 2;
-	origoY = height / 2;
-}
-
-Sprite::Sprite(float width, float height, char* filename)
-		: width(width), height(height), filename(filename) {
-	angle = 0;
-	origoX = width / 2;
-	origoY = height / 2;
-}
-
-Sprite::~Sprite() {}
 
 void Sprite::initTexture(char* filename) {
 	glGenTextures(1, &textureName);

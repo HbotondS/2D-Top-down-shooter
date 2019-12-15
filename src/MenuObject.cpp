@@ -2,24 +2,16 @@
 #include <iostream>
 
 
-void RenderString(float x, float y, void* font, float r, float g, float b, const unsigned char* string)
-{
+void RenderString(float x, float y, void* font, float r, float g, float b, const unsigned char* string) {
 	char* c;
 	glColor3f(r, g, b);
 	glRasterPos2f(x, y);
 	glutBitmapString(font, string);
 }
 
-MenuObject::MenuObject() {
+MenuObject::MenuObject() {}
 
-}
-
-
-
-
-
-void MenuObject::draw_menu_item(const unsigned char* title, float offset)
-{
+void MenuObject::drawMenuItem(const unsigned char* title, float offset) {
 	glColor3f(255, 0, 0);
 
 	glBegin(GL_POLYGON);
@@ -39,24 +31,17 @@ void MenuObject::draw() {
 	glEnable(GL_STENCIL_TEST);
 	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
-	unsigned char* tmpBuffer = &titleNewGame[0];
-
 	float offset = 0;
 
 	glStencilFunc(GL_ALWAYS, 1, -1);
-	draw_menu_item(tmpBuffer, offset); //kirajzol egy darab menu pontot
+	drawMenuItem(titleNewGame, offset);
 
 	offset = height + space;
 
-	tmpBuffer = &titleSettings[0];
 	glStencilFunc(GL_ALWAYS, 2, -1);
-	draw_menu_item(tmpBuffer, offset); //kirajzol egy darab menu pontot
-
+	drawMenuItem(titleSettings, offset);
 	offset += height + space;
 
-	tmpBuffer = &titleExit[0];
 	glStencilFunc(GL_ALWAYS, 3, -1);
-	draw_menu_item(tmpBuffer, offset); //kirajzol egy darab menu pontot
+	drawMenuItem(titleExit, offset);
 }
-
-

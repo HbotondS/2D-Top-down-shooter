@@ -13,8 +13,8 @@ void Game::SpawnEnemy() {
 	enemy = new Enemy(70, 70, 1, filename2, 100, 10);
 	float marginX = enemy->getWidth();
 	float marginY = enemy->getHeight();
-	float spawnX = (rand() % (int)(glutGet(GLUT_WINDOW_WIDTH) - (marginX * 2))) + marginX;
-	float spawnY = glutGet(GLUT_WINDOW_HEIGHT) - ((rand() % (int)(player->getHeight() - (marginY * 2))) + marginY);
+	float spawnX = (rand() % (int) (glutGet(GLUT_WINDOW_WIDTH) - (marginX * 2))) + marginX;
+	float spawnY = glutGet(GLUT_WINDOW_HEIGHT) - ((rand() % (int) (player->getHeight() - (marginY * 2))) + marginY);
 	enemy->setPositionX(spawnX);
 	enemy->setPositionY(spawnY);
 }
@@ -64,7 +64,7 @@ void Game::onMouseClicked(int button, int state, int x, int y) {
 }
 
 void Game::onMouseMove(int x, int y) {
-	double angle = atan2((float) y - player->getPositionY(), (float) x - player->getPositionX()) * 180 / 3.15;
+	float angle = atan2((float) y - player->getPositionY(), (float) x - player->getPositionX()) * 180 / 3.15;
 	player->setAngle(angle);
 }
 
@@ -76,26 +76,26 @@ void Game::timer(void(*t)(int)) {
 			bullet = nullptr;
 		}
 	}
-	if (enemy != nullptr) {
+	if(enemy != nullptr) {
 		moveEnemy();
 	}
 
-	if (detectCollision(enemy, bullet)) {
+	if(detectCollision(enemy, bullet)) {
 
 		enemy->setHealth(enemy->getHealth() - bullet->getDamage());
 		pushBack(bullet, enemy);
 		delete bullet;
 		bullet = nullptr;
-		if (enemy->getHealth() == 0) {
+		if(enemy->getHealth() == 0) {
 			enemy = nullptr;
 			delete enemy;
 		}
 	}
 
-	if (detectCollision(player, enemy)) {
+	if(detectCollision(player, enemy)) {
 		player->setHealth(player->getHealth() - enemy->getDamage());
 		pushBack(enemy, player);
-		if (player->getHealth() <= 0) {
+		if(player->getHealth() <= 0) {
 			exit(0);
 		}
 	}
@@ -110,7 +110,7 @@ void Game::draw() {
 	if(bullet != nullptr) {
 		bullet->draw();
 	}
-	if (enemy == nullptr) {
+	if(enemy == nullptr) {
 		SpawnEnemy();
 	} else {
 		enemy->draw();
@@ -134,41 +134,43 @@ bool Game::detectCollision(Entity* entity1, Entity* entity2) {
 }
 
 void Game::pushBack(Entity* entity1, Entity* entity2) {
-		// bal felso sarokba loki 
-	if (entity1->getPositionX() > entity2->getPositionX() && entity1->getPositionY() > entity2->getPositionY())
-	{
+	// push back to upper left corner
+	if(entity1->getPositionX() > entity2->getPositionX() && entity1->getPositionY() > entity2->getPositionY()) {
 		entity2->setPositionX(entity2->getPositionX() - 30);
 		entity2->setPositionY(entity2->getPositionY() - 30);
 	}
-		//bal also sarokba loki
-	if (entity1->getPositionX() > entity2->getPositionX() && entity1->getPositionY() < entity2->getPositionY()) {
+	// puch back to lower left corner
+	if(entity1->getPositionX() > entity2->getPositionX() && entity1->getPositionY() < entity2->getPositionY()) {
 		entity2->setPositionX(entity2->getPositionX() - 30);
 		entity2->setPositionY(entity2->getPositionY() + 30);
 	}
-		//jobb felso sarokba loki
-	if (entity1->getPositionX() < entity2->getPositionX() && entity1->getPositionY() > entity2->getPositionY()) {
+	// push back to upper right corner
+	if(entity1->getPositionX() < entity2->getPositionX() && entity1->getPositionY() > entity2->getPositionY()) {
 		entity2->setPositionX(entity2->getPositionX() + 30);
 		entity2->setPositionY(entity2->getPositionY() - 30);
 	}
-		//jobb also sarokba loki
-	if (entity1->getPositionX() < entity2->getPositionX() && entity1->getPositionY() < entity2->getPositionY()) {
+	// push back to lower right corner
+	if(entity1->getPositionX() < entity2->getPositionX() && entity1->getPositionY() < entity2->getPositionY()) {
 		entity2->setPositionX(entity2->getPositionX() + 30);
 		entity2->setPositionY(entity2->getPositionY() + 30);
 	}
-		// felfele loki
-	if (entity1->getPositionX() == entity2->getPositionX() && entity1->getPositionY() > entity2->getPositionY())
+	// push up
+	if(entity1->getPositionX() == entity2->getPositionX() && entity1->getPositionY() > entity2->getPositionY()) {
 		entity2->setPositionY(entity2->getPositionY() - 30);
-		
-		//lefele loki
-	if (entity1->getPositionX() == entity2->getPositionX() && entity1->getPositionY() < entity2->getPositionY())
-		entity2->setPositionY(entity2->getPositionY() + 30);
-						
-		//jobbra loki 
-	if (entity1->getPositionX() < entity2->getPositionX() && entity1->getPositionY() == entity2->getPositionY())
-		entity2->setPositionX(entity2->getPositionX() + 30);
-								
-		//balra loki
-	if (entity1->getPositionX() > entity2->getPositionX() && entity1->getPositionY() == entity2->getPositionY())
-		entity2->setPositionX(entity2->getPositionX() - 30);
+	}
 
+	// push down
+	if(entity1->getPositionX() == entity2->getPositionX() && entity1->getPositionY() < entity2->getPositionY()) {
+		entity2->setPositionY(entity2->getPositionY() + 30);
+	}
+
+	// push right
+	if(entity1->getPositionX() < entity2->getPositionX() && entity1->getPositionY() == entity2->getPositionY()) {
+		entity2->setPositionX(entity2->getPositionX() + 30);
+	}
+
+	// push left
+	if(entity1->getPositionX() > entity2->getPositionX() && entity1->getPositionY() == entity2->getPositionY()) {
+		entity2->setPositionX(entity2->getPositionX() - 30);
+	}
 }

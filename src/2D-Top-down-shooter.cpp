@@ -11,8 +11,7 @@ MenuObject menu;
 Game* game = new Game();
 
 void displayMenu(void) {
-	//game->draw();
-	 menu.draw();
+	menu.draw();
 }
 
 void displayGame(void) {
@@ -60,14 +59,17 @@ void onMouseMenu(int button, int state, int x, int y) {
 
 	int selected = index;
 	switch (selected) {
-	case 1: {
-		startNewGame();
-	} break;
-	case 2: {
-		startSettings();
-	} break;
-	case 3:exit(0);
-		break;
+		case 1: {
+			startNewGame();
+			break;
+		}
+		case 2: {
+			startSettings();
+			break;
+		}
+		case 3: {
+			exit(0);
+		}
 	}
 }
 
@@ -80,10 +82,11 @@ void mouseMove(int x, int y) {
 }
 
 void startSettings() {
+	// todo
 }
 
 // initialize Game functions such as Mouse and Keyboard, change the menu draw function
-//into game draw function
+// into game draw function
 void startNewGame() {
 	glutDisplayFunc(displayGame);
 	glutPassiveMotionFunc(mouseMove);

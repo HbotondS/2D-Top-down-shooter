@@ -14,13 +14,13 @@ protected:
 	float health, damage;
 public:
 	Entity(float, float, float, char*, float, float);
-	virtual float getPositionX() = 0;
-	virtual float getPositionY() = 0;
-	virtual void setPositionX(float) = 0;
-	virtual void setPositionY(float) = 0;
+	virtual float getPositionX();
+	virtual float getPositionY();
+	virtual void setPositionX(float);
+	virtual void setPositionY(float);
 	virtual float getWidth();
 	virtual float getHeight();
-	virtual void setAngle(float) = 0;
-	virtual float getAngle() = 0;
+	virtual void setAngle(float);
+	virtual float getAngle();
 	virtual void draw() = 0;
 };
