@@ -52,8 +52,6 @@ void onMouseMenu(int button, int state, int x, int y) {
 	int window_width = glutGet(GLUT_WINDOW_WIDTH);
 	int window_height = glutGet(GLUT_WINDOW_HEIGHT);
 
-	GLbyte color[4];
-	GLfloat depth;
 	GLuint index;
 
 	glReadPixels(x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &index);
@@ -78,8 +76,6 @@ void onMouseSettings(int button, int state, int x, int y){
 	int window_width = glutGet(GLUT_WINDOW_WIDTH);
 	int window_height = glutGet(GLUT_WINDOW_HEIGHT);
 
-	GLbyte color[4];
-	GLfloat depth;
 	GLuint index;
 
 	glReadPixels(x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &index);
