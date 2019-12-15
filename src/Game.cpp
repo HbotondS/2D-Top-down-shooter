@@ -8,6 +8,17 @@ Game::Game() {
 	player = new Player(100, 100, 5, filename, 100);
 }
 
+void Game::setGameMode(unsigned int mode)
+{
+	int health = 100;
+	switch (mode) {
+	case 0: health = 120; break;
+	case 1: health = 100; break;
+	case 2: health = 80; break;
+	}
+	player->setHealth(health);
+}
+
 // found in OpenGL Game Development by Example just rewrote to be compatible with this program 
 void Game::SpawnEnemy() {
 	enemy = new Enemy(70, 70, 1, filename2, 100, 10);

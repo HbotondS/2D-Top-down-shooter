@@ -7,7 +7,7 @@ Player::Player(float width, float height, float moveSpeed, char* textureLocation
 	origoX = width / 2;
 	origoY = height / 2;
 	angle = 0;
-	health = 100;
+	setHealth(health);
 }
 void Player::setHealth(float health) {
 	this->health = health;

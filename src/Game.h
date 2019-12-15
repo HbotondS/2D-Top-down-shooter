@@ -15,6 +15,7 @@ private:
 	Enemy* enemy;
 public:
 	Game();
+	void setGameMode(unsigned int mode);
 	void onKeyPressed(unsigned char key, int x, int y);
 	void onMouseClicked(int button, int state, int x, int y);
 	void onMouseMove(int x, int y);
