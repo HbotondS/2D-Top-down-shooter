@@ -11,12 +11,12 @@ void RenderString(float x, float y, void* font, float r, float g, float b, const
 }
 
 MenuObject::MenuObject() {
-	
+
 }
 
 
 
- 
+
 
 void MenuObject::draw_menu_item(const unsigned char* title, float offset)
 {
@@ -31,7 +31,7 @@ void MenuObject::draw_menu_item(const unsigned char* title, float offset)
 	glEnd();
 	RenderString(x + (width / 4), y - offset + (height / 3), GLUT_BITMAP_TIMES_ROMAN_24, 255, 255, 255, title);
 
-	//glFlush();
+	glFlush();
 }
 
 void MenuObject::draw() {
@@ -42,9 +42,9 @@ void MenuObject::draw() {
 	unsigned char* tmpBuffer = &titleNewGame[0];
 
 	float offset = 0;
-	
-	glStencilFunc(GL_ALWAYS,  1, -1);
-	draw_menu_item(tmpBuffer,offset); //kirajzol egy darab menu pontot
+
+	glStencilFunc(GL_ALWAYS, 1, -1);
+	draw_menu_item(tmpBuffer, offset); //kirajzol egy darab menu pontot
 
 	offset = height + space;
 

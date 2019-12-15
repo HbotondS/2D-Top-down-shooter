@@ -43,7 +43,6 @@ void Sprite::initTexture(char* filename) {
 void Sprite::draw() {
 	initTexture(filename);
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_TEXTURE_2D);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
@@ -60,7 +59,6 @@ void Sprite::draw() {
 
 
 	glPopMatrix();
-	glFlush();
 	glDisable(GL_TEXTURE_2D);
 }
 

@@ -1,22 +1,24 @@
 #pragma once
 #include "Entity.h"
 
-class Player : public Entity {
+class Enemy : public Entity {
+
 public:
-	Player(float, float, float, char*, float );
-	~Player() {};
+	Enemy(float, float, float, char*, float, float);
+	~Enemy() {};
 	float getPositionX();
 	float getPositionY();
 	void setPositionX(float);
 	void setPositionY(float);
 	void setAngle(float);
 	float getAngle();
+	float getMoveSpeed();
 	void draw();
-	void moveUP();
-	void moveDown();
-	void moveRight();
-	void moveLeft();
+	void setDamage(float);
 	void setHealth(float);
 	float getHealth();
+	float getDamage();
+
+
 };
 
