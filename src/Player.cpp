@@ -17,29 +17,6 @@ float Player::getHealth() {
 	return health;
 }
 
-float Player::getPositionX() {
-	return x;
-}
-float Player::getPositionY() {
-	return y;
-}
-
-void Player::setPositionX(float x) {
-	this->x = x;
-}
-
-void Player::setPositionY(float y) {
-	this->y = y;
-}
-
-void Player::setAngle(float angle) {
-	this->angle = angle;
-}
-
-float Player::getAngle() {
-	return angle;
-}
-
 void Player::draw() {
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
@@ -48,7 +25,6 @@ void Player::draw() {
 	glRotatef(angle, 0, 0, 1);
 	sprite->draw();
 	glPopMatrix();
-	glFlush();
 }
 
 void Player::moveUP() {

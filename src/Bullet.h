@@ -5,21 +5,16 @@
 #include <iostream>
 #include <vector>
 
-class Bullet : public Entity {
+class Bullet: public Entity {
 
 public:
 	std::vector<Bullet> bullets;
 
 	Bullet(float, float, float, float);
+	Bullet(float, float, float, char*, float, float);
 	~Bullet();
 	void draw();
 	void moveBullet();
-	float getPositionX();
-	float getPositionY();
-	void setPositionX(float);
-	void setPositionY(float);
-	void setAngle(float);
-	float getAngle();
 	void setDamage(float);
 	float getDamage();
 };

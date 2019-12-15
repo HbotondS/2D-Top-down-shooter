@@ -13,9 +13,8 @@ private:
 	GLuint textureName;
 	char* filename;
 	void loadTextureFromFile(char*);
-	void drawTextureQuad();
 	void initTexture(char*);
-	
+
 public:
 	Sprite(float, float, float, float, char*);
 	Sprite(float, float, char*);

@@ -5,10 +5,11 @@
 #include "Bullet.h"
 #include "Enemy.h"
 
-class Game : IDrawable {
+class Game: IDrawable {
 private:
-	char *filename;
-	char *filename2;
+	char* filename;
+	char* filename2;
+	char* filename3;
 	Player* player;
 	Bullet* bullet;
 	Enemy* enemy;
