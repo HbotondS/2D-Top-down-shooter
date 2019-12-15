@@ -3,7 +3,7 @@
 
 Game::Game() {
 	filename = _strdup("res/player2_2.bmp");
-	filename2 = _strdup("res/enemy.bmp");
+	filename2 = _strdup("res/enemy_2.bmp");
 	player = new Player(100, 100, 5, filename, 100);
 }
 
