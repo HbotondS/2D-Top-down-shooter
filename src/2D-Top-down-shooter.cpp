@@ -12,12 +12,11 @@ Game* game = new Game();
 
 void displayMenu(void) {
 	//game->draw();
-	game->setGameMode(menu.getGameMode());
 	 menu.draw();
 }
 
 void displayGame(void) {
-	
+	game->setGameMode(menu.getGameMode());
 	game->draw();
 }
 
