@@ -9,6 +9,7 @@ class Game : IDrawable {
 private:
 	char *filename;
 	char *filename2;
+	char *filename3;
 	Player* player;
 	Bullet* bullet;
 	Enemy* enemy;

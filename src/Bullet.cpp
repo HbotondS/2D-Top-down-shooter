@@ -11,6 +11,15 @@ Bullet::Bullet(float width, float height, float moveSpeed, float damage) : Entit
 	damage = 20;
 }
 
+Bullet::Bullet(float width, float height, float moveSpeed, char* textureLocation, float health, float damage): Entity(width, height, moveSpeed, textureLocation, health, damage) {
+	sprite = new Sprite(width, height, textureLocation);
+	origoX = width / 2;
+	origoY = height / 2;
+	angle = 0;
+	moveSpeed = 1;
+	damage = 20;
+}
+
 Bullet::~Bullet() {}
 
 float Bullet::getDamage() {
@@ -60,12 +69,7 @@ void Bullet::draw() {
 	glPushMatrix();
 	glTranslatef(x, y, 0);
 	glRotatef(angle, 0, 0, 1);
-	glBegin(GL_POLYGON);
-	glVertex2f(-origoX, -origoY);
-	glVertex2f(-origoX + width, -origoY);
-	glVertex2f(-origoX + width, -origoY + height);
-	glVertex2f(-origoX, -origoY + height);
-	glEnd();
+	sprite->draw();
 	glPopMatrix();
 }
 

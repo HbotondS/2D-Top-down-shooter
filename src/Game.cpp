@@ -3,7 +3,8 @@
 
 Game::Game() {
 	filename = _strdup("res/player2_2.bmp");
-	filename2 = _strdup("res/enemy.bmp");
+	filename2 = _strdup("res/enemy_2.bmp");
+	filename3 = _strdup("res/bullet.bmp");
 	player = new Player(100, 100, 5, filename, 100);
 }
 
@@ -54,7 +55,7 @@ void Game::onKeyPressed(unsigned char key, int x, int y) {
 
 void Game::onMouseClicked(int button, int state, int x, int y) {
 	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-		bullet = new Bullet(10, 10, 50, 20);
+		bullet = new Bullet(10, 10, 20, filename3, 0, 20);
 		bullet->setPositionX(player->getPositionX());
 		bullet->setPositionY(player->getPositionY());
 		double angle = atan2((float) y - player->getPositionY(), (float) x - player->getPositionX());

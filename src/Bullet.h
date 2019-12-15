@@ -11,6 +11,7 @@ public:
 	std::vector<Bullet> bullets;
 
 	Bullet(float, float, float, float);
+	Bullet(float, float, float, char*, float, float);
 	~Bullet();
 	void draw();
 	void moveBullet();

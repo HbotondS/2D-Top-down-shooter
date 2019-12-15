@@ -60,7 +60,7 @@ void Enemy::draw() {
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
-	glTranslatef(x, y, 0);
+	glTranslatef(x + origoX, y + origoY, 0);
 	glRotatef(angle, 0, 0, 1);
 	sprite->draw();
 	glPopMatrix();
