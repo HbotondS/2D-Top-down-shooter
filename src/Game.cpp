@@ -4,6 +4,7 @@
 Game::Game() {
 	filename = _strdup("res/player2_2.bmp");
 	filename2 = _strdup("res/enemy.bmp");
+	player = new Player(100, 100, 5, filename, 100);
 }
 
 void Game::setGameMode(unsigned int mode)
@@ -14,7 +15,7 @@ void Game::setGameMode(unsigned int mode)
 	case 1: health = 100; break;
 	case 2: health = 80; break;
 	}
-	player = new Player(100, 100, 5, filename, health);
+	player->setHealth(health);
 }
 
 // found in OpenGL Game Development by Example just rewrote to be compatible with this program 
