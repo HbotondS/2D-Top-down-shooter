@@ -3,12 +3,15 @@
 #include "Entity.h"
 #include "Player.h"
 #include "Bullet.h"
+#include "Enemy.h"
 
 class Game : IDrawable {
 private:
 	char *filename;
+	char *filename2;
 	Player* player;
 	Bullet* bullet;
+	Enemy* enemy;
 public:
 	Game();
 	void onKeyPressed(unsigned char key, int x, int y);
@@ -17,4 +20,8 @@ public:
 	void timer(void (*t)(int));
 	void draw();
 	bool detectCollision(Entity* entity1, Entity* entity2);
+	void SpawnEnemy();
+	void moveEnemy();
+	void pushBack(Entity* entity1, Entity* entity2);
+	
 };

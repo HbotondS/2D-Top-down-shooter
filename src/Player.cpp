@@ -1,12 +1,20 @@
 #include "Player.h"
 
-Player::Player(float width, float height, float moveSpeed, char* textureLocation): Entity(width, height, moveSpeed, textureLocation) {
+Player::Player(float width, float height, float moveSpeed, char* textureLocation, float health): Entity(width, height, moveSpeed, textureLocation, health, NULL) {
 	sprite = new Sprite(width, height, textureLocation);
 	x = 100;
 	y = 100;
 	origoX = width / 2;
 	origoY = height / 2;
 	angle = 0;
+	health = 100;
+}
+void Player::setHealth(float health) {
+	this->health = health;
+}
+
+float Player::getHealth() {
+	return health;
 }
 
 float Player::getPositionX() {
@@ -40,6 +48,7 @@ void Player::draw() {
 	glRotatef(angle, 0, 0, 1);
 	sprite->draw();
 	glPopMatrix();
+	glFlush();
 }
 
 void Player::moveUP() {
