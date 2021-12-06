@@ -27,7 +27,7 @@ The goal of our project was to get familiar with the basics of game development.
 ### Our mentor and teacher
 <table>
   <tr>
-    <td align="center"><a href="https://zszanto.github.io/"><img src="https://zszanto.github.io/authors/admin/avatar_huff4050c84021aa42d86de6ab7f382f2d_480434_250x250_fill_q90_lanczos_center.jpg" width="100px;" alt="Zoltán Szántó"/><br /><sub><b>Zoltán Szántó</b></sub></a></td>
+    <td align="center"><a href="https://zszanto.github.io/"><img src="https://github.com/zszanto/zszanto.github.io/blob/master/authors/admin/avatar_huff4050c84021aa42d86de6ab7f382f2d_480434_270x270_fill_q75_lanczos_center.jpg" width="100px;" alt="Zoltán Szántó"/><br /><sub><b>Zoltán Szántó</b></sub></a></td>
   </tr>
 </table>
 
