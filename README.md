@@ -7,7 +7,7 @@
 </p>
  
 # 2D-Top-down-shooter
-*University project in Software Managment, made with C++ and OpenGL.*
+*University project in Software Management, made with C++ and OpenGL.*
 </br>
 <img src="./misc/screenshot1.png" />
 
