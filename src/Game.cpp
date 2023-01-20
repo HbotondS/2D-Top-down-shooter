@@ -1,10 +1,12 @@
 #include "Game.h"
 #include <time.h>
+#include <string.h>
+#include <math.h>
 
 Game::Game() {
-	filename = _strdup("res/player2_2.bmp");
-	filename2 = _strdup("res/enemy_2.bmp");
-	filename3 = _strdup("res/bullet.bmp");
+	filename = strdup("res/player.bmp");
+	filename2 = strdup("res/enemy.bmp");
+	filename3 = strdup("res/bullet.bmp");
 	player = new Player(100, 100, 5, filename, 100);
 }
 

@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(float width, float height, float moveSpeed, char* textureLocation, float health): Entity(width, height, moveSpeed, textureLocation, health, NULL) {
+Player::Player(float width, float height, float moveSpeed, char* textureLocation, float health): Entity(width, height, moveSpeed, textureLocation, health, 10) {
 	sprite = new Sprite(width, height, textureLocation);
 	x = 100;
 	y = 100;

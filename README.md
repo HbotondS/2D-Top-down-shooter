@@ -1,7 +1,9 @@
 <p> 
+  <img src="https://img.shields.io/github/languages/top/HbotondS/2D-Top-down-shooter">
   <img src="https://img.shields.io/github/v/tag/HbotondS/2D-Top-down-shooter" />
   <img src="https://img.shields.io/github/last-commit/HbotondS/2D-Top-down-shooter" />
   <img src="https://img.shields.io/github/issues-pr-closed/HbotondS/2D-Top-down-shooter" />
+  <img src="https://img.shields.io/github/stars/hbotonds/2D-Top-down-shooter?style=social">
 </p>
  
 # 2D-Top-down-shooter

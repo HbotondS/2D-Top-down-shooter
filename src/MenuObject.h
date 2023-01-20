@@ -1,5 +1,3 @@
-#pragma once
-
 #include "IDrawable.h"
 #include <GL/freeglut.h>
 
