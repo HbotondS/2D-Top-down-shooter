@@ -17,6 +17,13 @@ The goal of our project was to get familiar with the basics of game development.
 ### Class diagram
 <img src="./misc/GameClassDiagram.jpg" />
 
+### How to build and run:
+```
+cmake .
+cmake --build .
+./game
+```
+
 ## Our team :smile:
 <table>
   <tr>
